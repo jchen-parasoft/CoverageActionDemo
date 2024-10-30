@@ -28,3 +28,4 @@ jobs:
         # Output folder for reports from code analysis.
         reportDir: reports/jtest/unit
         # Input scope for analysis.
+        input: .
