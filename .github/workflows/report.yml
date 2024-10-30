@@ -19,25 +19,12 @@ jobs:
 
     # Generates the jtest.data.json input file.
     - name: Create input for Jtest
-      run: mvn clean test-compile
-      
-    - name: Run Parasoft Jtest
-      uses: parasoft/run-jtest-action@2.0.0
-      with:
-        # Installation folder of Parasoft Jtest. If not specified, the cpptestcli executable must be added to PATH.
-        installDir: D:\Software\ParasoftTools\jtest_2024.1
-        # Test configuration to be used for code analysis.
-        testConfig: builtin://Unit Tests
-        # Output folder for reports from code analysis.
-        reportDir: report/jtest/unit
-        # Input scope for analysis.
-        input: target/jtest/jtest.data.json
-        additionalParams: -settings localsettings.properties
-    
+      run: mvn clean test-compile jtest:agent test jtest:jtest -Djtest.config="builtin://Unit Tests" -Djtest.settings="localsettings.properties"
+
     # Uploads an archive that includes all report files (.xml, .html, .sarif).
     - name: Archive reports
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: unit test and coverage reports
-        path: report/jtest/unit/*.*
+        path: target/jtest/*.*
