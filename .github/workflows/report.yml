@@ -19,7 +19,7 @@ jobs:
 
     # Generates the jtest.data.json input file.
     - name: Create input for Jtest
-      run: mvn clean install jtest:jtest
+      run: mvn clean test-compile
       
     - name: Run Parasoft Jtest
       uses: parasoft/run-jtest-action@2.0.0
