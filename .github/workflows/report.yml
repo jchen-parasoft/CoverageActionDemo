@@ -19,7 +19,7 @@ jobs:
 
     # Generates the jtest.data.json input file.
     - name: Create input for Jtest
-      run: D:\Software\apache-maven-3.9.0\bin\mvn clean test-compile jtest:agent test jtest:jtest -Djtest.config="builtin://Unit Tests" -Djtest.settings="localsettings.properties"
+      run: D:/Software/apache-maven-3.9.0/bin/mvn clean test-compile jtest:agent test jtest:jtest -Djtest.config="builtin://Unit Tests" -Djtest.settings="localsettings.properties"
 
     # Uploads an archive that includes all report files (.xml, .html, .sarif).
     - name: Archive reports
