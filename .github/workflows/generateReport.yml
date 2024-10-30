@@ -16,20 +16,6 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
-    
-    # Generates the jtest.data.json input file.
-    - name: Create input for Jtest
-      run: mvn clean install jtest:jtest "-Djtest.skip=true" 
-      
-    - name: Run Parasoft Jtest
-      uses: parasoft/run-jtest-action@2.0.0
-      with:
-        # Installation folder of Parasoft Jtest. If not specified, the cpptestcli executable must be added to PATH.
-        installDir: D:\Software\ParasoftTools\jtest_2024.1
-        # Test configuration to be used for code analysis.
-        testConfig: builtin://Unit Tests
-        # Output folder for reports from code analysis.
-        reportDir: reports/jtest/unit
-        # Input scope for analysis.
-        input: target/jtest/jtest.data.json
-        additionalParams: '-settings localsettings.properties'
+
+    - name: Generate Jtest coverage report
+      run: mvn clean test-compile jtest:agent test jtest:jtest -Djtest.config="builtin://Unit Tests" -Djtest.settings="localsettings.properties"
