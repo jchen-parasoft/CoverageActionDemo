@@ -32,7 +32,7 @@ jobs:
         reportDir: report/jtest/unit
         # Input scope for analysis.
         input: target/jtest/jtest.data.json
-        additionalParams: -settings=localsettings.properties
+        additionalParams: -property settings localsettings.properties
 
     # Uploads an archive that includes all report files (.xml, .html, .sarif).
     - name: Archive reports
