@@ -36,7 +36,7 @@ jobs:
       - name: Generate HTML reports
         uses: danielpalme/ReportGenerator-GitHub-Action@5.3.11
         with:
-          reports: './report/jtest/unit/coverage.xml-cobertura.xml'
+          reports: './report/jtest/unit/coverage-cobertura.xml'
           targetdir: './coverage-report'
           reporttypes: Html
  
