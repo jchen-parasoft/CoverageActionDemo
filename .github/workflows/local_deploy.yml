@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: false
  
 jobs:
-  deploy:
+  upload:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -32,26 +32,38 @@ jobs:
  
       - name: Setup Pages
         uses: actions/configure-pages@v5
- 
+
       - name: Generate HTML reports
         uses: danielpalme/ReportGenerator-GitHub-Action@5.3.11
         with:
           reports: './report/jtest/unit/coverage-cobertura.xml'
           targetdir: './coverage-report'
           reporttypes: Html
- 
-      - name: Add unique path using GitHub Run ID
-        run: mkdir -p .\coverage-report-${{ github.run_id }}
-      - run: mv ./coverage-report/* .\coverage-report-${{ github.run_id }}/  # 移动生成的HTML报告
- 
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: coverage-report-${{ github.run_id }} # Artifact name        
+          path: .\coverage-report # Directory containing files to upload
+    
+  deploy:
+    concurrency: ci-${{ github.ref }}
+    needs: [upload] # The second job must depend on the first one to complete before running and uses ubuntu-latest instead of windows.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts  # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v1
+        with:
+          name: coverage-report-${{ github.run_id }}
+
       - name: Upload artifact and deploy to unique path
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .\coverage-report-${{ github.run_id }}
+          path: ./coverage-report-${{ github.run_id }}
  
       - name: Deploy to GitHub Pages with unique path
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          path: .\coverage-report-${{ github.run_id }}
-          target-path: "${{ github.run_id }}"  # 使用 GitHub Run ID 作为目标路径
+          path: ./coverage-report-${{ github.run_id }}
+          target-path: "/${{ github.run_id }}"  # 使用 GitHub Run ID 作为目标路径
