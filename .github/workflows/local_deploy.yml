@@ -45,6 +45,11 @@ jobs:
         with:
           name: coverage-report-${{ github.run_id }} # Artifact name        
           path: .\coverage-report # Directory containing files to upload
+
+      - name: Download Artifacts  # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report-${{ github.run_id }}
     
   deploy:
     concurrency: ci-${{ github.ref }}
