@@ -42,10 +42,10 @@ jobs:
  
       - name: Add unique path using GitHub Run ID
         run: |
-          # UNIQUE_PATH=""  # 使用 GitHub Run ID 生成唯一路径
-          mkdir -p ../../github-page-reports/coverage-report-${{ github.run_id }}  # 创建路径目录
-          mv ./coverage-report/* ../../github-page-reports/coverage-report-${{ github.run_id }}/  # 移动生成的HTML报告
-          echo "UNIQUE_PATH=../../github-page-reports/coverage-report-${{ github.run_id }}" >> ${{ GITHUB_ENV }} # 存储为环境变量
+          set UNIQUE_PATH="../../github-page-reports/coverage-report-${{ github.run_id }}"  # 使用 GitHub Run ID 生成唯一路径
+          mkdir -p ${{ UNIQUE_PATH }}  # 创建路径目录
+          mv ./coverage-report/* ${{ UNIQUE_PATH }}/  # 移动生成的HTML报告
+          echo "UNIQUE_PATH=${{ UNIQUE_PATH }}" >> GITHUB_ENV # 存储为环境变量
         shell: bash
  
       - name: Upload artifact and deploy to unique path
