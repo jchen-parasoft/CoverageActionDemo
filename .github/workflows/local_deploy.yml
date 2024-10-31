@@ -42,7 +42,6 @@ jobs:
  
       - name: Add unique path using GitHub Run ID
         run: mv ./coverage-report/* D:\test-project\github-page-reports\github-page-reports\coverage-report-${{ github.run_id }}/  # 移动生成的HTML报告
-        shell: bash
  
       - name: Upload artifact and deploy to unique path
         uses: actions/upload-pages-artifact@v3
