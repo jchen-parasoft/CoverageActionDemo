@@ -42,6 +42,7 @@ jobs:
  
       - name: Add unique path using GitHub Run ID
         run: |
+          mkdir -p ../../github-page-reports/coverage-report-${{ github.run_id }}  # 创建路径目录
           mv ./coverage-report/* ../../github-page-reports/coverage-report-${{ github.run_id }}/  # 移动生成的HTML报告
         shell: bash
  
