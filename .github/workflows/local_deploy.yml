@@ -50,6 +50,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: coverage-report-${{ github.run_id }}
+          path: ./coverage-report-${{ github.run_id }}
     
   deploy:
     concurrency: ci-${{ github.ref }}
@@ -60,6 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: coverage-report-${{ github.run_id }}
+          path: ./coverage-report-${{ github.run_id }}
 
       - name: Upload artifact and deploy to unique path
         uses: actions/upload-pages-artifact@v3
