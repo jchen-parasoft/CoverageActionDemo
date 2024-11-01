@@ -37,14 +37,14 @@ jobs:
         uses: danielpalme/ReportGenerator-GitHub-Action@5.3.11
         with:
           reports: './report/jtest/unit/coverage-cobertura.xml'
-          targetdir: './coverage-report'
+          targetdir: 'D:\test-project\GitHubPagesReport/coverage-report-${{ github.run_id }}'
           reporttypes: Html
 
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report-${{ github.run_id }} # Artifact name        
-          path: .\coverage-report # Directory containing files to upload
+          path: D:\test-project\GitHubPagesReport\coverage-report-${{ github.run_id }} # Directory containing files to upload
 
   deploy:
     concurrency: ci-${{ github.ref }}
@@ -66,5 +66,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          path: ./coverage-report-${{ github.run_id }}
+          path: /coverage-report-${{ github.run_id }}
           target-path: "/${{ github.run_id }}"  # 使用 GitHub Run ID 作为目标路径
