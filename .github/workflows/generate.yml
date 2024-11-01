@@ -15,7 +15,6 @@ permissions:
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
-  cancel-in-progress: false
 
 jobs:
   # Build job
@@ -25,31 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
       - name: Generate HTML reports
         uses: danielpalme/ReportGenerator-GitHub-Action@5.3.11
         with:
           reports: './report/small/coverage-cobertura.xml'
-          targetdir: './docs/coverage-report-1'
+          targetdir: 'D:\test-project\GitHubPagesReport/coverage-report-${{ github.run_id }}'
           reporttypes: Html
-
-      - name: Generate HTML reports
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.3.11
-        with:
-          reports: './report/large/coverage-cobertura.xml'
-          targetdir: './docs/coverage-report-2'
-          reporttypes: Html
-
-      - name: Upload coverage report artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report-${{ github.run_id }} # Artifact name        
-          path: ./docs # Directory containing files to upload
+          sourcedirs: 'D:\test-project\GitHubPagesReport/coverage-report-${{ github.run_id }}\sources'
+          historydir: 'D:\test-project\GitHubPagesReport/coverage-report-${{ github.run_id }}\history'
