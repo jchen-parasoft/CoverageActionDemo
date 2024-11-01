@@ -65,6 +65,3 @@ jobs:
       - name: Deploy to GitHub Pages with unique path
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          path: /coverage-report-${{ github.run_id }}
-          target-path: "/${{ github.run_id }}"  # 使用 GitHub Run ID 作为目标路径
