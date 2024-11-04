@@ -22,3 +22,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+          save_period: '00:00:01'
+          save_min_runs_number: 0
+          dry: true
