@@ -25,6 +25,8 @@
 
         - name: Generate table
           uses: jchen-parasoft/coverage-report-action@main
+          with: 
+            repoToken: ${{ github.token }}
 
         - name: Upload table file
           uses: actions/upload-artifact@v4
