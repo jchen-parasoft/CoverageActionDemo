@@ -22,10 +22,12 @@
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+
         - name: Generate table
           uses: jchen-parasoft/coverage-report-action@main
           with: 
-            repoToken: ${{ github.token }}
+            repoToken: ${{ secrets.GITHUB_TOKEN }}
+
         - name: Upload table file
           uses: actions/upload-artifact@v4
           with:
