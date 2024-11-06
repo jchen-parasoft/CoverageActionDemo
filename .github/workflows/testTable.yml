@@ -22,3 +22,8 @@
       steps:
         - name: Generate table
           uses: jchen-parasoft/coverage-report-action@main
+        - name: Upload table file
+          uses: actions/upload-artifact@v4
+          with:
+            name: report-table.md # Artifact name        
+            path: .\report-table.md
