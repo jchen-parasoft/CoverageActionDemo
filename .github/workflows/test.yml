@@ -12,5 +12,6 @@ jobs:
         uses: actions/checkout@v4
       - uses: 5monkeys/cobertura-action@master
         with:
+          repo_token: ${{ secrets.GitHub_Actions }}
           path: ./coverage-cobertura.xml
           minimum_coverage: 20
