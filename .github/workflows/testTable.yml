@@ -21,6 +21,7 @@
           uses: jchen-parasoft/coverage-report-action@cobertura
           with: 
             path: ./coverage-cobertura.xml
+            skip_covered: false
 
         - name: Upload table file
           uses: actions/upload-artifact@v4
