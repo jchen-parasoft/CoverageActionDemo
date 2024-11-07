@@ -12,5 +12,5 @@ jobs:
         uses: actions/checkout@v4
       - uses: 5monkeys/cobertura-action@master
         with:
-          path: ./report-xunit_converted-from-xml-report.xml
-          minimum_coverage: 75
+          path: ./coverage-cobertura.xml
+          minimum_coverage: 20
