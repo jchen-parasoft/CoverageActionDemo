@@ -1,3 +1,3 @@
-| File                                                                                           | Covered | Total | Percentage |
-|------------------------------------------------------------------------------------------------|---------|-------|------------|
-| <details><summary>com.example</summary><p style="text-align:center">example.java</p></details> | 223     | 251   | 88%        |
+| File                                                                                               | Covered | Total | Percentage |
+|----------------------------------------------------------------------------------------------------|---------|-------|------------|
+| <details><summary>com.example</summary><div style="text-align: right">example.java</div></details> | 223     | 251   | 88%        |
