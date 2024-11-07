@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: 5monkeys/cobertura-action@master
+      - uses: jchen-parasoft/coverage-report-action@main
         with:
-          repo_token: ${{ secrets.GitHub_Actions }}
           path: ./coverage-cobertura.xml
           minimum_coverage: 20
