@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: jchen-parasoft/coverage-report-action@main
+      - uses: 5monkeys/cobertura-action@master
         with:
           path: ./coverage-cobertura.xml
           minimum_coverage: 20
