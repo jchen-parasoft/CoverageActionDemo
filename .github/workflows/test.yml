@@ -1,0 +1,16 @@
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - action_deploy
+  workflow_dispatch:
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: 5monkeys/cobertura-action@master
+        with:
+          path: ./report-xunit_converted-from-xml-report.xml
+          minimum_coverage: 75
